@@ -185,6 +185,9 @@ const RoyalHandi: React.FC = () => {
   useEffect(() => {
     if (!mainGroup.current || !potRef.current || !lidRef.current || !aniseRef.current || !cardamomRef.current || !cloveRef.current) return;
 
+    const isDesktop = viewport.width > 7;
+    const spiceScale = isDesktop ? 1.1 : 0.7;
+
     gsap.set(aniseRef.current.position, { y: 5, x: -1, z: 1 });
     gsap.set(aniseRef.current.scale, { x: 0, y: 0, z: 0 });
     gsap.set(cardamomRef.current.position, { y: 5.5, x: 1, z: 0.5 });
@@ -204,9 +207,9 @@ const RoyalHandi: React.FC = () => {
 
     sceneTl
       .to(mainGroup.current.position, {
-        x: viewport.width > 7 ? 2.2 : 0,
-        y: viewport.width > 7 ? -0.2 : -1.2,
-        z: -1,
+        x: isDesktop ? 2.2 : 0,
+        y: isDesktop ? -0.2 : 0.8,
+        z: isDesktop ? -1 : -0.5,
         duration: 1
       })
       .to(mainGroup.current.rotation, {
@@ -215,9 +218,9 @@ const RoyalHandi: React.FC = () => {
         duration: 1
       }, 0)
       .to(mainGroup.current.position, {
-        x: viewport.width > 7 ? -2.2 : 0,
-        y: viewport.width > 7 ? -0.1 : -0.8,
-        z: 0.5,
+        x: isDesktop ? -2.2 : 0,
+        y: isDesktop ? -0.1 : 0.8,
+        z: isDesktop ? 0.5 : -0.2,
         duration: 1.2
       })
       .to(mainGroup.current.rotation, {
@@ -232,9 +235,9 @@ const RoyalHandi: React.FC = () => {
         duration: 1
       })
       .to(mainGroup.current.scale, {
-        x: 0.35,
-        y: 0.35,
-        z: 0.35,
+        x: isDesktop ? 0.35 : 0.25,
+        y: isDesktop ? 0.35 : 0.25,
+        z: isDesktop ? 0.35 : 0.25,
         duration: 1
       }, '-=1');
 
@@ -256,9 +259,9 @@ const RoyalHandi: React.FC = () => {
         ease: 'power2.out'
       })
       .to(cardamomRef.current.scale, {
-        x: 1.2,
-        y: 1.2,
-        z: 1.2,
+        x: spiceScale * 1.1,
+        y: spiceScale * 1.1,
+        z: spiceScale * 1.1,
         duration: 1
       }, 0)
       .to(aniseRef.current.position, {
@@ -269,9 +272,9 @@ const RoyalHandi: React.FC = () => {
         ease: 'power2.out'
       }, '-=0.6')
       .to(aniseRef.current.scale, {
-        x: 1.1,
-        y: 1.1,
-        z: 1.1,
+        x: spiceScale,
+        y: spiceScale,
+        z: spiceScale,
         duration: 1
       }, '-=1')
       .to(cloveRef.current.position, {
@@ -282,9 +285,9 @@ const RoyalHandi: React.FC = () => {
         ease: 'power2.out'
       }, '-=0.5')
       .to(cloveRef.current.scale, {
-        x: 1.1,
-        y: 1.1,
-        z: 1.1,
+        x: spiceScale,
+        y: spiceScale,
+        z: spiceScale,
         duration: 0.8
       }, '-=0.8')
       .to(lidRef.current.position, {
@@ -298,8 +301,14 @@ const RoyalHandi: React.FC = () => {
     };
   }, [viewport]);
 
+  const isDesktop = viewport.width > 7;
+
   return (
-    <group ref={mainGroup} position={[0, -0.4, 0]} scale={[1.2, 1.2, 1.2]}>
+    <group 
+      ref={mainGroup} 
+      position={[0, isDesktop ? -0.4 : 0, 0]} 
+      scale={isDesktop ? [1.2, 1.2, 1.2] : [0.85, 0.85, 0.85]}
+    >
       <group ref={potRef}>
         {/* Pot body (polished copper) */}
         <mesh castShadow receiveShadow position={[0, 0, 0]}>
