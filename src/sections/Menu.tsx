@@ -160,6 +160,7 @@ const MENU_ITEMS: MenuItem[] = [
     isVeg: true,
     image: 'sweet_lassi.png'
   }
+];
 
 const MenuCard: React.FC<{ item: MenuItem; onClick: () => void }> = ({ item, onClick }) => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
