@@ -58,7 +58,7 @@ export const Hero: React.FC = () => {
       )
       .fromTo(subtitleRef.current, 
         { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 0.65, duration: 1.0, ease: 'power3.out' }, 
+        { y: 0, opacity: 1, duration: 1.0, ease: 'power3.out' }, 
         '-=0.6'
       )
       .fromTo(btnGroupRef.current, 
@@ -98,14 +98,37 @@ export const Hero: React.FC = () => {
       id="hero"
       className="relative w-full min-h-screen flex flex-col justify-between items-center text-center px-6 py-20 z-10 overflow-hidden"
     >
+      {/* Hero Background Video */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: 'brightness(0.88) saturate(1.25) contrast(1.05)' }}
+        >
+          <source src="vedio.mp4" type="video/mp4" />
+        </video>
+        {/* Gradient overlays for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/55 via-[#0A0A0A]/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/75 via-[#0A0A0A]/15 to-[#0A0A0A]/35" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_42%,rgba(10,10,10,0.65)_0%,rgba(10,10,10,0.25)_50%,transparent_80%)]" />
+      </div>
+
       {/* Spacer to push content center */}
       <div className="h-10" />
 
       {/* Hero Headings */}
-      <div className="max-w-4xl flex flex-col items-center select-none">
+      <div className="relative max-w-4xl flex flex-col items-center select-none px-8 py-10 md:px-16 md:py-14">
+        <div
+          className="absolute inset-0 -z-10 rounded-sm bg-black/25 backdrop-blur-[2px] border border-white/5"
+          aria-hidden
+        />
+
         <h1
           ref={titleRef}
-          className="text-5xl md:text-8xl lg:text-[10rem] font-serif font-light tracking-[0.25em] leading-none uppercase copper-gradient-text"
+          className="hero-title text-5xl md:text-8xl lg:text-[10rem] font-serif font-normal tracking-[0.25em] leading-none uppercase text-gold-light"
         >
           NIZAM
         </h1>
@@ -113,12 +136,12 @@ export const Hero: React.FC = () => {
         {/* Subtle Horizontal Divider Line */}
         <div
           ref={dividerRef}
-          className="w-40 md:w-80 h-[1px] bg-copper/30 my-6 md:my-8 origin-center"
+          className="w-40 md:w-80 h-[1px] bg-gold-light/60 my-6 md:my-8 origin-center shadow-[0_0_12px_rgba(0,0,0,0.8)]"
         />
 
         <p
           ref={subtitleRef}
-          className="text-sm md:text-lg tracking-[0.35em] uppercase text-warm-white/70 font-light max-w-2xl leading-relaxed"
+          className="hero-subtitle text-sm md:text-lg tracking-[0.35em] uppercase text-cream font-normal max-w-2xl leading-relaxed"
         >
           THE ROYAL CULINARY LEGACY OF THE DECCAN
         </p>
@@ -137,7 +160,7 @@ export const Hero: React.FC = () => {
           <a
             href="#signature"
             onClick={(e) => handleScrollTo(e, '#signature')}
-            className="magnetic-btn px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] border border-copper/30 hover:border-copper text-warm-white transition-colors rounded-sm flex items-center justify-center"
+            className="magnetic-btn px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] border border-gold-light/40 hover:border-gold-light text-cream hover:text-gold-light transition-colors rounded-sm flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
             data-cursor-text="DISCOVER"
           >
             Explore Menu
@@ -148,11 +171,11 @@ export const Hero: React.FC = () => {
         <a
           href="#experience"
           onClick={(e) => handleScrollTo(e, '#experience')}
-          className="group flex flex-col items-center gap-3 text-warm-white/40 hover:text-copper transition-colors duration-300"
+          className="group flex flex-col items-center gap-3 text-cream/80 hover:text-gold-light transition-colors duration-300"
           aria-label="Scroll down"
         >
           <span className="text-[10px] tracking-[0.3em] uppercase font-light">Scroll to Begin</span>
-          <div className="w-8 h-8 rounded-full border border-warm-white/10 group-hover:border-copper/30 flex items-center justify-center transition-all duration-500">
+          <div className="w-8 h-8 rounded-full border border-cream/30 group-hover:border-gold-light/50 flex items-center justify-center transition-all duration-500 shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
             <ArrowDown size={14} className="group-hover:translate-y-0.5 transition-transform duration-300" />
           </div>
         </a>

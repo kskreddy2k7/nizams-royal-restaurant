@@ -7,12 +7,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Preloader } from './components/Preloader';
 import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
-import { Canvas3D } from './components/Canvas3D';
+
 
 // Import Sections
 import { Hero } from './sections/Hero';
 import { IngredientStory } from './sections/IngredientStory';
 import { SignatureDish } from './sections/SignatureDish';
+
 import { ChefStory } from './sections/ChefStory';
 import { Menu } from './sections/Menu';
 import { Gallery } from './sections/Gallery';
@@ -50,8 +51,7 @@ export const App: React.FC = () => {
         {/* 3. Global Subtle Grain Overlay (Awwwards texture look) */}
         <div className="noise-bg" />
 
-        {/* 4. Three.js fixed background element */}
-        {!isLoading && <Canvas3D />}
+
 
         {/* 5. Floating Glass Header */}
         <Navbar />
